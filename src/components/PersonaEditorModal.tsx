@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
+import { apiUrl } from '../lib/api';
 import { ExternalLink, Globe, ImagePlus, Loader2, Trash2, X } from 'lucide-react';
 import {
   ARCHETYPE_PRESETS,
@@ -150,7 +151,7 @@ export function PersonaEditorModal({
     setIsAnalyzing(true);
 
     try {
-      const res = await fetch('/api/persona/analyze', {
+      const res = await fetch(apiUrl('/api/persona/analyze'), {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
