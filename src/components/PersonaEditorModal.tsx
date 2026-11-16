@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
-import { apiUrl } from '../lib/api';
+import { apiUrl, isPagesWithoutApi } from '../lib/api';
 import { ExternalLink, Globe, ImagePlus, Loader2, Trash2, X } from 'lucide-react';
 import {
   ARCHETYPE_PRESETS,
@@ -182,7 +182,13 @@ export function PersonaEditorModal({
       setAnalyzedRules(draft.suggestedRules);
       setError('');
     } catch (err: unknown) {
-      setAnalyzeError(err instanceof Error ? err.message : 'Gagal menghubungi layanan analisa web.');
+      setAnalyzeError(
+        isPagesWithoutApi
+          ? 'Riset karakter membutuhkan backend Express. Deploy backend dan atur VITE_API_BASE_URL pada GitHub Actions Variables.'
+          : err instanceof Error
+            ? err.message
+            : 'Gagal menghubungi layanan analisa web.'
+      );
     } finally {
       setIsAnalyzing(false);
     }
