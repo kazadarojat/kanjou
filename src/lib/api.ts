@@ -13,3 +13,5 @@ export function apiUrl(path: string): string {
 }
 
 export const hasExternalApi = API_BASE_URL.length > 0;
+export const isPagesWithoutApi =
+  import.meta.env.PROD && import.meta.env.BASE_URL === '/kanjou/' && !hasExternalApi;
