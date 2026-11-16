@@ -21,6 +21,34 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 const app = express();
+const allowedCorsOrigins = new Set(
+  (process.env.CORS_ORIGINS || '')
+    .split(',')
+    .map((origin) => origin.trim())
+    .filter(Boolean)
+);
+
+app.use((req, res, next) => {
+  const origin = req.headers.origin;
+  if (origin && allowedCorsOrigins.has(origin)) {
+    res.setHeader('Access-Control-Allow-Origin', origin);
+    res.setHeader('Vary', 'Origin');
+    res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS');
+    res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
+  }
+
+  if (req.method === 'OPTIONS') {
+    if (origin && !allowedCorsOrigins.has(origin)) {
+      res.sendStatus(403);
+      return;
+    }
+    res.sendStatus(204);
+    return;
+  }
+
+  next();
+});
+
 app.use(express.json({ limit: '1mb' }));
 
 interface ChatTurn {
