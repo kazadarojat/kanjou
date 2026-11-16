@@ -1,4 +1,5 @@
 import { useEffect, useMemo, useState } from 'react';
+import { apiUrl } from './lib/api';
 import { ChatWorkspace, type ChatMessage } from './components/ChatWorkspace';
 import { EmotionCharts, type EmotionSnapshot } from './components/EmotionCharts';
 import { EmotionTrainerPanel } from './components/EmotionTrainerPanel';
@@ -234,7 +235,7 @@ export default function App() {
     setCalibrationNotice(null);
 
     try {
-      const response = await fetch('/api/chat', {
+      const response = await fetch(apiUrl('/api/chat'), {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
