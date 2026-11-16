@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useState } from 'react';
-import { apiUrl } from './lib/api';
+import { apiUrl, isPagesWithoutApi } from './lib/api';
 import { ChatWorkspace, type ChatMessage } from './components/ChatWorkspace';
 import { EmotionCharts, type EmotionSnapshot } from './components/EmotionCharts';
 import { EmotionTrainerPanel } from './components/EmotionTrainerPanel';
@@ -283,7 +283,11 @@ export default function App() {
         ],
       }));
     } catch (err: unknown) {
-      const msg = err instanceof Error ? err.message : 'Terjadi kesalahan jaringan.';
+      const msg = isPagesWithoutApi
+        ? 'Backend AI belum terhubung. GitHub Pages hanya menjalankan frontend. Deploy server Express, lalu atur VITE_API_BASE_URL pada GitHub Actions Variables.'
+        : err instanceof Error
+          ? err.message
+          : 'Terjadi kesalahan jaringan.';
       setError(msg);
     } finally {
       setIsSending(false);
