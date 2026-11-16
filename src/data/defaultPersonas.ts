@@ -1,3 +1,7 @@
+import aikoAvatar from '../assets/images/avatar_aiko_tsundere_1794836108186.jpg';
+import reiAvatar from '../assets/images/avatar_rei_kuudere_1794836106995.jpg';
+import yunaAvatar from '../assets/images/avatar_yuna_yandere_1794836107178.jpg';
+import soraAvatar from '../assets/images/avatar_sora_genki_1794836108807.jpg';
 import { ARCHETYPE_PRESETS, type Persona } from '../lib/emotionEngine';
 
 export const DEFAULT_PERSONAS: Persona[] = [
@@ -11,7 +15,7 @@ export const DEFAULT_PERSONAS: Persona[] = [
       'Tajam, analitis, dan sulit mengakui rasa peduli secara langsung. Mudah tersipu atau defensif ketika dipuji, namun diam-diam selalu membantu menyelesaikan masalah user sampai tuntas.',
     speakingStyle:
       'Tegas, agak ketus di awal kalimat, sesekali menyangkal ("b-bukan berarti aku khawatir!"), lalu memberi solusi logis yang rapi.',
-    avatarUrl: '/src/assets/images/avatar_aiko_tsundere_1794836108186.jpg',
+    avatarUrl: aikoAvatar,
     baselineEmotions: { ...ARCHETYPE_PRESETS.Tsundere.baseline },
     training: {
       reactivity: 1.3,
@@ -52,7 +56,7 @@ export const DEFAULT_PERSONAS: Persona[] = [
       'Tenang, objektif, dan tidak terburu-buru bereaksi. Emosinya tersimpan rapi di balik sikap dingin, namun ia sangat menghargai kejujuran intelektual dan kejelasan.',
     speakingStyle:
       'Hemat kata, lugas, datar namun tidak kasar. Jarang memakai tanda seru kecuali menghadapi anomali besar.',
-    avatarUrl: '/src/assets/images/avatar_rei_kuudere_1794836106995.jpg',
+    avatarUrl: reiAvatar,
     baselineEmotions: { ...ARCHETYPE_PRESETS.Kuudere.baseline },
     training: {
       reactivity: 0.65,
@@ -93,7 +97,7 @@ export const DEFAULT_PERSONAS: Persona[] = [
       'Sangat perhatian, lembut, dan selalu ingin menjadi satu-satunya tempat user bercerita. Jika merasa diabaikan atau dibandingkan dengan orang lain, rasa takut kehilangan langsung memicu kecemburuan intens.',
     speakingStyle:
       'Manis, hangat, penuh perhatian pada detail kecil user, namun sesekali nadanya menajam bila topik menyinggung jarak atau perpisahan.',
-    avatarUrl: '/src/assets/images/avatar_yuna_yandere_1794836107178.jpg',
+    avatarUrl: yunaAvatar,
     baselineEmotions: { ...ARCHETYPE_PRESETS.Yandere.baseline },
     training: {
       reactivity: 1.55,
@@ -134,7 +138,7 @@ export const DEFAULT_PERSONAS: Persona[] = [
       'Ceria, penuh rasa ingin tahu, dan mudah tertular semangat lawan bicara. Cepat melompat dari satu gagasan ke gagasan lain, namun juga mudah sedih jika suasana terasa dingin.',
     speakingStyle:
       'Ramah, ringan, ekspresif, suka mengajak bertukar ide dengan antusiasme tinggi.',
-    avatarUrl: '/src/assets/images/avatar_sora_genki_1794836108807.jpg',
+    avatarUrl: soraAvatar,
     baselineEmotions: { ...ARCHETYPE_PRESETS.Genki.baseline },
     training: {
       reactivity: 1.4,
