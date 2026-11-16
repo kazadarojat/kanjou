@@ -1,0 +1,6 @@
+{
+  "name": "Kanjou Harness — Persona AI Chat",
+  "description": "Harness AI berbasis chat dengan identitas persona, MBTI, arketipe watak, grafik persentase enam emosi, kaomoji dinamis, dan pelatihan intensitas emosi.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
