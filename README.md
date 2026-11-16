@@ -12,7 +12,7 @@
 [![Express](https://img.shields.io/badge/Express-4-303030?logo=express&logoColor=white)](https://expressjs.com/)
 [![Gemini](https://img.shields.io/badge/Google-Gemini_API-4285F4?logo=google&logoColor=white)](https://ai.google.dev/gemini-api/docs)
 
-**[Open in Google AI Studio](https://ai.studio/apps/83b293ba-0bae-4e7f-880b-eb2e4181b5b1)** · **[Source Code](https://github.com/kazadarojat/kanjou)**
+**[Live Demo](https://kazadarojat.github.io/kanjou/)** · **[Open in Google AI Studio](https://ai.studio/apps/83b293ba-0bae-4e7f-880b-eb2e4181b5b1)** · **[Source Code](https://github.com/kazadarojat/kanjou)**
 
 </div>
 
@@ -178,7 +178,7 @@ Belum ada klaim bahwa keseluruhan test suite atau build telah lolos CI.
 
 ## Production Deployment
 
-Kanjou merupakan aplikasi **frontend + Node.js backend**. Deploy ke platform yang dapat menjalankan proses Node.js persisten (misalnya VM/container atau hosting Node.js yang sesuai), bukan hanya hosting statis.
+Kanjou merupakan aplikasi **frontend + Node.js backend**. Frontend statis dipublikasikan melalui [GitHub Pages](https://kazadarojat.github.io/kanjou/), sedangkan endpoint Express harus dijalankan secara terpisah pada platform yang mendukung Node.js (misalnya VM/container atau hosting Node.js). GitHub Pages tidak menjalankan `server.ts` maupun endpoint `/api/*`.
 
 ### Build and start (Node.js runtime)
 
@@ -198,6 +198,8 @@ npx tsx server.ts
 Server menggunakan \`express.static('dist')\` pada production dan melayani endpoint \`/api/health\`, \`/api/chat\`, serta \`/api/persona/analyze\`.
 
 > **Known limitation:** Script \`npm start\` pada \`package.json\` saat ini berisi \`node server.ts\`. Kompatibilitasnya bergantung pada versi Node.js dan dukungan TypeScript native. Untuk deployment yang konsisten, gunakan runtime/transpilasi TS yang didukung, atau build backend JS sebagai langkah terpisah. Perintah di atas memakai \`tsx\` yang tercantum dalam devDependencies, sehingga instalasi harus menyertakan devDependencies.
+
+Untuk menghubungkan frontend GitHub Pages ke backend, set GitHub repository variable `VITE_API_BASE_URL` ke origin backend (contoh `https://api.example.com`, tanpa akhiran `/api`), lalu jalankan ulang workflow. Backend juga harus mengizinkan CORS dari `https://kazadarojat.github.io`. Variabel `VITE_*` masuk ke bundle browser dan tidak boleh berisi API key.
 
 **Sebelum deployment publik:** tambahkan autentikasi/otorisasi, rate limiting per pengguna/IP, validasi request yang ketat, pembatasan biaya dan token, kebijakan privasi, observabilitas, serta penanganan timeout dan error. Endpoint Gemini saat ini menerima request tanpa kontrol akses aplikasi dan menggunakan API key di sisi server. **Jangan mengeksposnya ke publik tanpa proteksi.**
 
